@@ -28,8 +28,17 @@ def make_mp3(data):
         sound_dict.export("example.mp3", format="mp3")
         for key in dictionary:
             str_to_mp3 = str(key)
-            audio = gTTS(text=str_to_mp3, lang="en", slow=False)
-            audio.save("example_key.mp3")
+            t1 = Thread(target=make_mp3_from_text(text=str_to_mp3, lang="en", slow=False, mp3="example_key.mp3"))
+            # audio = gTTS(text="словарь", lang="ru", slow=False)
+            # audio.save("example_dict.mp3")
+            t1.start()
+            flag_is_alive = t1.is_alive()
+            while flag_is_alive:
+                sleep(1)
+                flag_is_alive = t1.is_alive()
+            t1.join()
+            # audio = gTTS(text=str_to_mp3, lang="en", slow=False)
+            # audio.save("example_key.mp3")
             make_mp3(dictionary[key])
             #соединить звук key + value
             sound_key = AudioSegment.from_mp3("example_key.mp3")
@@ -44,8 +53,17 @@ def make_mp3(data):
         sound_dict.export("example.mp3", format="mp3")
     elif type(data) == list:
         list_values = data
-        audio = gTTS(text="список", lang="ru", slow=False)
-        audio.save("example_list.mp3")
+        t1 = Thread(target=make_mp3_from_text(text="список", lang="ru", slow=False, mp3="example_list.mp3"))
+        # audio = gTTS(text="словарь", lang="ru", slow=False)
+        # audio.save("example_dict.mp3")
+        t1.start()
+        flag_is_alive = t1.is_alive()
+        while flag_is_alive:
+            sleep(1)
+            flag_is_alive = t1.is_alive()
+        t1.join()
+        # audio = gTTS(text="список", lang="ru", slow=False)
+        # audio.save("example_list.mp3")
         for element in list_values:
             make_mp3(element)
             # соединить звук словарь + элемент словаря
@@ -56,12 +74,28 @@ def make_mp3(data):
         sound_list = AudioSegment.from_mp3("example_list.mp3")
         sound_list.export("example.mp3", format="mp3")
     else:
-        mytext = str(data)
+        str_to_mp3 = str(data)
         # re.search(r'[^a-zA-Z а-яА-ЯёЁ]',a )
-        audio = gTTS(text=mytext, lang="ru", slow=False)
-        audio.save("example.mp3")
+        t1 = Thread(target=make_mp3_from_text(text=str_to_mp3, lang="ru", slow=False, mp3="example.mp3"))
+        # audio = gTTS(text="словарь", lang="ru", slow=False)
+        # audio.save("example_dict.mp3")
+        t1.start()
+        flag_is_alive = t1.is_alive()
+        while flag_is_alive:
+            sleep(1)
+            flag_is_alive = t1.is_alive()
+        t1.join()
+        # audio = gTTS(text=mytext, lang="ru", slow=False)
+        # audio.save("example.mp3")
 
-make_mp3(data)
+
+def make_mp3_from_json(json_path):
+    with open(json_path, encoding='utf-8') as example_file:
+        data = json.load(example_file)
+    make_mp3(data)
+
+#'C:\\Users\\a_zhuck\Documents\GitHub\sound_JSON\example_json.json'
+
 
 
 
