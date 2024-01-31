@@ -1,0 +1,37 @@
+{
+  "organization": "Атлас-консалтинг",
+  "website": "https://www.website.org/",
+  "formed": 2017,
+  "director" : "Андрей Николаевич",
+  "departments" : [
+    {
+      "name" : "Разработка",
+      "employees" : [
+        {
+          "name": "Заур"
+        }
+      ],
+      "stack" : ["1C"]
+    },
+    {
+      "name" : "Аналитика",
+      "employees" : [
+        {
+          "name" : "Лилия"
+        }
+      ]
+    },
+    {
+      "name" : "Нейроцех",
+      "employees" : [
+        {
+          "name" : "Арсений",
+          "working" : {
+            "type" : "Договор ГПХ",
+            "hour_count" : 20
+          }
+        }
+      ]
+    }
+  ]
+}
