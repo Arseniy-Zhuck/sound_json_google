@@ -35,7 +35,7 @@ def make_mp3(data, f):
 # read json in dictionary
 # open audio binary stream for output
 # use make_mp3
-def make_mp3s_from_json(json_path):
+def make_mp3_from_json(json_path):
     with open(json_path, encoding='utf-8') as example_file:
         data = json.load(example_file)
     with open('source/result.mp3', 'wb') as f:
